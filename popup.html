@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Save and Restore Tab Groups</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+    /* font-family: 'Montserrat', sans-serif; */
+
+    :root {
+        --color-bg-primary: #dc143cbb;
+        --color-bg-primary-faint: #dc143c77;
+        --color-bg-secondary: #ffdeda;
+        --color-bg-secondary-faint: #ffdeda77;
+        --color-bg-tertiary: #fee6e3;
+    }
+
+    * {
+        font-family: 'Montserrat', sans-serif, monospace;
+    }
+    body {
+        width: 300px;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 0 auto;
+        color: var(--color-bg-primary);
+        overflow-y: hidden; /* Prevent body scrollbar */
+    }
+    h1, footer {
+        text-align: center;
+    }
+    .horizontal-line {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-bg-primary);
+        margin: 0em auto 1.5em auto;
+    }
+    .btn-grp {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        /* height: 100vh; */
+    }
+    .button-56 {
+        align-items: center;
+        background-color: var(--color-bg-tertiary);
+        border: 2px solid var(--color-bg-primary-faint);
+        border-radius: 8px;
+        box-sizing: border-box;
+        color: var(--color-bg-primary);
+        cursor: pointer;
+        display: flex;
+        font-family: Inter,sans-serif;
+        font-size: 13px;
+        height: 36px;
+        justify-content: center;
+        line-height: 18px;
+        max-width: 100%;
+        padding: 0 18px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    .button-56:after {
+        background-color: var(--color-bg-primary-faint);
+        border-radius: 8px;
+        content: "";
+        display: block;
+        height: 36px;
+        left: 0;
+        width: 100%;
+        position: absolute;
+        top: -2px;
+        transform: translate(7px, 7px);
+        transition: transform .2s ease-out;
+        z-index: -1;
+    }
+
+    .button-56:active:after {
+        transform: translate(0, 0);
+    }
+
+    .button-56:active {
+        background-color: var(--color-bg-secondary);
+        outline: 0;
+    }
+
+    .button-56:hover {
+        outline: 0;
+    }
+
+    .tab-groups {
+        margin-top: 2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-height: 500px; /* Adjust max-height as needed */
+        overflow-y: auto; /* Enable scrollbar for groupList */
+    }
+
+    .tab-groups div {
+        text-align: center;
+        border-radius: 8px;
+        font-size: 1.1em;
+        min-width: 100%;
+        max-width: 100%;
+        padding: 1em 0;
+        background-color: var(--color-bg-secondary-faint);
+        margin: 2px auto;
+        cursor: pointer;
+    }
+
+    .tab-groups div:hover {
+        background-color: var(--color-bg-secondary);
+    }
+
+    .tab-groups div:active {
+        background-color: var(--color-bg-tertiary);
+    }
+
+    @media (min-width: 768px) {
+        .button-56 {
+            padding: 0 30px;
+        }
+    }
+</style>
+</head>
+<body>
+    <h1 title="right-click on groupName to delete it">Save and Restore Tab Groups</h1>
+    <div class="horizontal-line"></div>
+    <div class="btn-grp">
+        <button id="saveTabs" class="button-56">Save Tabs</button>
+        <button id="restoreTabs" class="button-56">Restore Saved Tabs</button>
+    </div>
+    <div id="groupList" class="tab-groups" title="click to open, right-click to delete"></div>
+    <div id="saveTabsResponse"></div>
+    <script src="popup.js"></script>
+</body>
+</html>
